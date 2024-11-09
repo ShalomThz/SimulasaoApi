@@ -1,5 +1,5 @@
-const crimeData=require ('../DB/onc-datos-abiertos.json')
-class HomicidesService {
+const crimeData=require ('../DB/onc-datos-abiertos.json');
+class GeneralSimulationService {
   constructor() {
     this.crimeData = crimeData;
   }
@@ -51,4 +51,4 @@ class HomicidesService {
     return Object.keys(municipalityCounts).find(municipality => municipalityCounts[municipality] === maxCount);
   }
 }
-module.exports = HomicidesService;
+module.exports = GeneralSimulationService;

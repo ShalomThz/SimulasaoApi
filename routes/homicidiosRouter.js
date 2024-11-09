@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const HomicidesService=require('../services/homicidesServices');
-const service=new HomicidesService();
+const GeneralSimulationService=require('../services/generalSimulationService');
+const service=new GeneralSimulationService();
+
+
 router.get('/', async(req, res) => {
   const result=await service.monteCarloSimulation();
   res.json(result);
