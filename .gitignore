@@ -1,4 +1,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,windows,linux,macos
+package-lock.json
+package.json
 
 ### Linux ###
 *~
