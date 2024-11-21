@@ -6,8 +6,8 @@ const routerApi=require('./routes')
 const app = express();
 
 const port =3200;
-
-app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+//63342
+app.use(cors({ origin: 'http://localhost:5500' }));
 
 app.use(express.json());
 

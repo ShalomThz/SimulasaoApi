@@ -1,7 +1,10 @@
-const crimeData=require ('../DB/onc-datos-abiertos.json');
+//const crimeData=require ('../DB/onc-datos-abiertos.json');
 class GeneralSimulationService {
   constructor() {
-    this.crimeData = crimeData;
+    this.crimeData = [];
+  }
+  async updateCrimeData(newData){
+    this.crimeData=newData;
   }
 
   async monteCarloSimulation(iterations = 1000) {
