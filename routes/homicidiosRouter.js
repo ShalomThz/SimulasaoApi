@@ -42,17 +42,17 @@ router.post('/upload-json', upload.single('file'), async (req, res) => {
   });
 });
 
-router.post('/update-data', async(req, res) => {
-  const newCrimeData=req.body;
-  if (!Array.isArray(newCrimeData) || newCrimeData.length === 0) {
-    return res.status(400).json({ error: 'Datos inválidos o vacíos' });
-  }
-
- await service.updateCrimeData(newCrimeData);
-  res.status(200).json({ message: 'Datos actualizados correctamente' });
-
-
-})
+// router.post('/update-data', async(req, res) => {
+//   const newCrimeData=req.body;
+//   if (!Array.isArray(newCrimeData) || newCrimeData.length === 0) {
+//     return res.status(400).json({ error: 'Datos inválidos o vacíos' });
+//   }
+//
+//  await service.updateCrimeData(newCrimeData);
+//   res.status(200).json({ message: 'Datos actualizados correctamente' });
+//
+//
+// })
 
 
 module.exports = router;
