@@ -1,7 +1,7 @@
-//const crimeData=require ('../DB/onc-datos-abiertos.json');
+const crimeDataDB=require ('../DB/onc-datos-abiertos.json');
 class GeneralSimulationService {
   constructor() {
-    this.crimeData = [];
+    this.crimeData = crimeDataDB;
   }
   async updateCrimeData(newData){
     this.crimeData=newData;

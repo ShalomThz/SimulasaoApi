@@ -7,7 +7,7 @@ const app = express();
 
 const port =3200;
 //63342
-app.use(cors({ origin: 'http://localhost:5500' }));
+app.use(cors({ origin: 'http://localhost:63342' }));
 
 app.use(express.json());
 
