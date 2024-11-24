@@ -11,6 +11,7 @@ class GeneralSimulationService {
     const monthCounts = {};
     const researchRates = [];
     const municipalityCounts = {};
+    const anoActual={};
 
     // Realizamos las simulaciones
     for (let i = 0; i < iterations; i++) {
@@ -19,6 +20,8 @@ class GeneralSimulationService {
       const entry = this.crimeData[randomIndex];
 
       // Cuenta los delitos por mes
+      const ano=entry.date.split("-")[0];
+      anoActual[ano]=(anoActual[ano]||0)+1;
       const month = entry.date.split("-")[1];
       monthCounts[month] = (monthCounts[month] || 0) + 1;
 
@@ -35,8 +38,14 @@ class GeneralSimulationService {
     return {
       mostLikelyMonths: this.getMostLikelyMonths(monthCounts),
       averageResearchRate: this.getAverageResearchRate(researchRates),
-      mostLikelyMunicipality: this.getMostLikelyMunicipality(municipalityCounts)
+      mostLikelyMunicipality: this.getMostLikelyMunicipality(municipalityCounts),
+      ano:this.getAnoActual(anoActual)
+
     };
+  }
+  getAnoActual(anoActual){
+    const maxCount = Math.max(...Object.values(anoActual));
+    return Object.keys(anoActual).filter(ano => anoActual[ano] === maxCount);
   }
 
   getMostLikelyMonths(monthCounts) {
