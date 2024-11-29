@@ -1,10 +1,15 @@
 const express = require('express');
-const homicidesRouter=require('./homicidiosRouter');
+const simulationRouter=require('./simulationRouter');
+const uploadRouter=require('./uploadRouter');
+const actualDataRouter=require('./actualDataRouter');
 
 
 function routerApi(app){
   const router = express.Router();
-  app.use('/api/v2', router);
-  router.use('/generalSimulation',homicidesRouter );
+  app.use('/api', router);
+  router.use('/Simulation',simulationRouter );
+  router.use('/upload',uploadRouter);
+  router.use('/data',actualDataRouter);
+
 }
 module.exports = routerApi;

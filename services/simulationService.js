@@ -1,13 +1,16 @@
-const crimeDataDB=require ('../DB/onc-datos-abiertos.json');
-class GeneralSimulationService {
-  constructor() {
-    this.crimeData = crimeDataDB;
-  }
-  async updateCrimeData(newData){
-    this.crimeData=newData;
-  }
+const  DataService =require( './dataService');
 
-  async monteCarloSimulation(iterations = 1000) {
+class SimulationService {
+  constructor() {
+    this.crimeData = DataService.getData();
+  }
+  // async updateCrimeData(newData){
+  //   this.crimeData=newData;
+  // }
+
+  async monteCarloSimulation(iterations = 10000) {
+    //console.log(this.crimeData,'esto es de la simulacion');
+    this.crimeData = DataService.getData();
     const monthCounts = {};
     const researchRates = [];
     const municipalityCounts = {};
@@ -63,4 +66,4 @@ class GeneralSimulationService {
     return Object.keys(municipalityCounts).find(municipality => municipalityCounts[municipality] === maxCount);
   }
 }
-module.exports = GeneralSimulationService;
+module.exports = SimulationService;
