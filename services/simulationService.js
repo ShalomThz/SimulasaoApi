@@ -8,8 +8,10 @@ class SimulationService {
   //   this.crimeData=newData;
   // }
 
-  
-  async monteCarloSimulation(iterations = 10000) {
+
+
+
+  async monteCarloSimulationPerYear(iterations = 10000) {
     //console.log(this.crimeData,'esto es de la simulacion');
     this.crimeData = DataService.getData();
     const monthCounts = {};

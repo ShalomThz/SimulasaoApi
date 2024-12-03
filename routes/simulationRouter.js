@@ -11,7 +11,7 @@ const fs = require('fs'); // Para leer el archivo JSON
 
 
 router.get('/one-year', async(req, res) => {
-  const result=await service.monteCarloSimulation();
+  const result=await service.monteCarloSimulationPerYear();
   //console.log('Contenido del archivo leído:', result.ano);
   res.json(result);
 })
