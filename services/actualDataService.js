@@ -37,12 +37,32 @@ class ActualDataService {
     // Calcular el promedio de la tasa de investigación
     const averageRate = monthObjects.length > 0 ? totalResearchRate / monthObjects.length : 0;
 
+    // Obtener el municipio con más "folders"
+    const mostLikelyMunicipality = this.getMostLikelyMunicipality(monthObjects);
+
     // Retornar los valores calculados
     return {
       tasa: parseFloat(averageRate.toFixed(2)), // Promedio redondeado a 2 decimales
-      folder: totalFolders
+      folder: totalFolders,
+      mostLikelyMunicipality: mostLikelyMunicipality
     };
+  }
+
+  getMostLikelyMunicipality(monthObjects) {
+    // Contamos los "folders" por municipio
+    const municipalityCounts = monthObjects.reduce((acc, obj) => {
+      const municipality = obj.inegiMunicipalityName;
+      acc[municipality] = (acc[municipality] || 0) + obj.folders;  // Sumamos los "folders"
+      return acc;
+    }, {});
+
+    // Encontramos el municipio con más "folders"
+    const maxCount = Math.max(...Object.values(municipalityCounts));
+    const mostLikelyMunicipality = Object.keys(municipalityCounts).find(municipality => municipalityCounts[municipality] === maxCount);
+
+    return mostLikelyMunicipality;
   }
 }
 
 module.exports = ActualDataService;
+//tomando como referencia los folders
