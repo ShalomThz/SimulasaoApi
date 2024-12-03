@@ -1,66 +1,33 @@
-const  DataService =require( './dataService');
+const DataService = require('./dataService');
+
 class ActualDataService {
   constructor() {
     this.crimeData = DataService.getData();
   }
 
-  async perMonth(){
+  async perMonth() {
     this.crimeData = DataService.getData();
-    const data=this.crimeData;
-    const januaryObjects=[];
-    await this.arrayMonthFiller(januaryObjects,"01");
-    const februaryObjects=[];
-    await this.arrayMonthFiller(februaryObjects,"02");
-    const marchObjects=[];
-    await this.arrayMonthFiller(marchObjects,"03");
-    const aprilObjects=[];
-    await this.arrayMonthFiller(aprilObjects,"04");
-    const mayObjects=[];
-    await this.arrayMonthFiller(mayObjects,"05");
-    const junyObjects=[];
-    await this.arrayMonthFiller(junyObjects,"06");
-    const julyObjects=[];
-    await this.arrayMonthFiller(julyObjects,"07");
-    const augustObjects=[];
-    await this.arrayMonthFiller(augustObjects,"08");
-    const septemberObjects=[];
-    await this.arrayMonthFiller(septemberObjects,"09");
-    const octoberObjects=[];
-    await this.arrayMonthFiller(octoberObjects,"10");
-    const novemberObjects=[];
-    await this.arrayMonthFiller(novemberObjects,"11");
-    const decemberObjects=[];
-    await this.arrayMonthFiller(decemberObjects,"12");
 
-
-    return{
-      january: this.getMonth(januaryObjects),
-      february:this.getMonth(februaryObjects),
-      march:this.getMonth(marchObjects),
-      april:this.getMonth(aprilObjects),
-      may:this.getMonth(mayObjects),
-      juny:this.getMonth(junyObjects),
-      july:this.getMonth(julyObjects),
-      august:this.getMonth(augustObjects),
-      september:this.getMonth(septemberObjects),
-      october:this.getMonth(octoberObjects),
-      november:this.getMonth(novemberObjects),
-      december:this.getMonth(decemberObjects)
-    }
-
-
-
+    return {
+      january: await this.getMonth(await this.arrayMonthFiller("01")),
+      february: await this.getMonth(await this.arrayMonthFiller("02")),
+      march: await this.getMonth(await this.arrayMonthFiller("03")),
+      april: await this.getMonth(await this.arrayMonthFiller("04")),
+      may: await this.getMonth(await this.arrayMonthFiller("05")),
+      juny: await this.getMonth(await this.arrayMonthFiller("06")),
+      july: await this.getMonth(await this.arrayMonthFiller("07")),
+      august: await this.getMonth(await this.arrayMonthFiller("08")),
+      september: await this.getMonth(await this.arrayMonthFiller("09")),
+      october: await this.getMonth(await this.arrayMonthFiller("10")),
+      november: await this.getMonth(await this.arrayMonthFiller("11")),
+      december: await this.getMonth(await this.arrayMonthFiller("12")),
+    };
   }
-  //hay el problema de quitar el  objeto de delitos totales
-  async arrayMonthFiller(monthObjects,numberMonth){
-    const newMonthCounter=[];
-    for(let i=0;i<monthObjects.length;i++){
-      if(monthObjects[i].date.split("-")[1]===numberMonth){
-        newMonthCounter.push(monthObjects[i]);
-      }
-    }
-    return newMonthCounter;
-  };
+
+  async arrayMonthFiller(numberMonth) {
+    // Filtra directamente desde `this.crimeData`
+    return this.crimeData.filter(item => item.date.split("-")[1] === numberMonth);
+  }
 
   async getMonth(monthObjects) {
     // Sumar todas las carpetas y tasas
@@ -76,22 +43,6 @@ class ActualDataService {
       folder: totalFolders
     };
   }
-
-
-  // async getMonth(monthObjects){
-  //   let researchFoldersRate=0;
-  //   let folders=0;
-  //
-  //   //aqui va la logica para que researchFoldersRate sea un promedio general de todos los objetos del array que nos envie en monthObjects
-  //   //aqui va la logica para que folders sea la sumatoria de todos los folders de los objetos que nos envien en el array monthObjects
-  //
-  //   return{
-  //     tasa:researchFoldersRate,
-  //     folder:folders
-  //   }
-  //
-  // }
-
 }
 
-module.exports =ActualDataService;
+module.exports = ActualDataService;
