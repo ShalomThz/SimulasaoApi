@@ -16,7 +16,7 @@ router.get('/one-year', async(req, res) => {
   res.json(result);
 })
 
-router.get('/one-month', async(req, res) => {
+router.get('/months', async(req, res) => {
   const result=await service.monteCarloSimulationPerMonth();
   //console.log('Contenido del archivo leído:', result.ano);
   res.json(result);
