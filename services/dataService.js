@@ -32,9 +32,9 @@ class DataService {
       } else {
         throw new Error('El archivo proporcionado no es válido. Debe ser un objeto JSON o una cadena JSON.');
       }
-      console.log(this.data,'Datos cargadosde DAata service:');
+     // console.log(this.data,'Datos cargadosde DAata service:');
     } catch (error) {
-      console.error('Error al cargar los datos:', error);
+      console.error('...', error);
     }
   }
 

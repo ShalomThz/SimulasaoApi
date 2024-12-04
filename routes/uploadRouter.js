@@ -26,7 +26,7 @@ router.post('/json', upload.single('file'), async (req, res) => {
     try {
       const jsonData = JSON.parse(data); // Convertir el archivo a JSON
       //await service.updateCrimeData(jsonData); // Actualizar los datos
-      console.log(jsonData,'Datos cargados de la uploadRouter:');
+    //  console.log(jsonData,'Datos cargados de la uploadRouter:');
        await DataService.loadData(jsonData);
 
       // Eliminar el archivo temporal después de leerlo
