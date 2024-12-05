@@ -107,7 +107,7 @@ class SimulationService {
     const mostLikelyMunicipality = this.getMostLikelyMunicipalityPerMoth(simulatedData);
 
     return {
-      tasa: parseFloat(averageRate.toFixed(2)),
+      tasa: parseFloat(averageRate.toFixed(3))*(10),
       folder: totalFolders,
       mostLikelyMunicipality,
     };

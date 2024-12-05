@@ -42,7 +42,7 @@ class ActualDataService {
 
     // Retornar los valores calculados
     return {
-      tasa: parseFloat(averageRate.toFixed(2)), // Promedio redondeado a 2 decimales
+      tasa: parseFloat(averageRate.toFixed(2))*(10), // Promedio redondeado a 2 decimales
       folder: totalFolders,
       mostLikelyMunicipality: mostLikelyMunicipality
     };
