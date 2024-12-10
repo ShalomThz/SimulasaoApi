@@ -1,5 +1,6 @@
 const DataService = require('./dataService');
 
+
 class ActualDataService {
   constructor() {
     this.crimeData = DataService.getData();
@@ -7,26 +8,26 @@ class ActualDataService {
 
   async perMonth() {
     this.crimeData = DataService.getData();
-
+     let data=this.crimeData;
     return {
-      january: await this.getMonth(await this.arrayMonthFiller("01")),
-      february: await this.getMonth(await this.arrayMonthFiller("02")),
-      march: await this.getMonth(await this.arrayMonthFiller("03")),
-      april: await this.getMonth(await this.arrayMonthFiller("04")),
-      may: await this.getMonth(await this.arrayMonthFiller("05")),
-      juny: await this.getMonth(await this.arrayMonthFiller("06")),
-      july: await this.getMonth(await this.arrayMonthFiller("07")),
-      august: await this.getMonth(await this.arrayMonthFiller("08")),
-      september: await this.getMonth(await this.arrayMonthFiller("09")),
-      october: await this.getMonth(await this.arrayMonthFiller("10")),
-      november: await this.getMonth(await this.arrayMonthFiller("11")),
-      december: await this.getMonth(await this.arrayMonthFiller("12")),
+      january: await this.getMonth(await this.arrayMonthFiller(data,"01")),
+      february: await this.getMonth(await this.arrayMonthFiller(data,"02")),
+      march: await this.getMonth(await this.arrayMonthFiller(data,"03")),
+      april: await this.getMonth(await this.arrayMonthFiller(data,"04")),
+      may: await this.getMonth(await this.arrayMonthFiller(data,"05")),
+      juny: await this.getMonth(await this.arrayMonthFiller(data,"06")),
+      july: await this.getMonth(await this.arrayMonthFiller(data,"07")),
+      august: await this.getMonth(await this.arrayMonthFiller(data,"08")),
+      september: await this.getMonth(await this.arrayMonthFiller(data,"09")),
+      october: await this.getMonth(await this.arrayMonthFiller(data,"10")),
+      november: await this.getMonth(await this.arrayMonthFiller(data,"11")),
+      december: await this.getMonth(await this.arrayMonthFiller(data,"12")),
     };
   }
 
-  async arrayMonthFiller(numberMonth) {
+  async arrayMonthFiller(data,numberMonth) {
     // Filtra directamente desde `this.crimeData`
-    return this.crimeData.filter(item => item.date.split("-")[1] === numberMonth);
+    return data.filter(item => item.date.split("-")[1] === numberMonth);
   }
 
   async getMonth(monthObjects) {
@@ -62,6 +63,32 @@ class ActualDataService {
 
     return mostLikelyMunicipality;
   }
+
+
+  async getComparateData(){
+    this.crimeData = DataService.getData();
+    const date=this.crimeData[0].date.split("-")[0];
+    let numberDate=parseInt(date,10);
+    let newNumberDate=numberDate+1;
+    console.log(`esto es de actialDataService ${date} y esto es el numero que le sumo ${newNumberDate}`);
+    const data=require(`../DB/${newNumberDate}.json`);
+    return {
+      january: await this.getMonth(await this.arrayMonthFiller(data,"01")),
+      february: await this.getMonth(await this.arrayMonthFiller(data,"02")),
+      march: await this.getMonth(await this.arrayMonthFiller(data,"03")),
+      april: await this.getMonth(await this.arrayMonthFiller(data,"04")),
+      may: await this.getMonth(await this.arrayMonthFiller(data,"05")),
+      juny: await this.getMonth(await this.arrayMonthFiller(data,"06")),
+      july: await this.getMonth(await this.arrayMonthFiller(data,"07")),
+      august: await this.getMonth(await this.arrayMonthFiller(data,"08")),
+      september: await this.getMonth(await this.arrayMonthFiller(data,"09")),
+      october: await this.getMonth(await this.arrayMonthFiller(data,"10")),
+      november: await this.getMonth(await this.arrayMonthFiller(data,"11")),
+      december: await this.getMonth(await this.arrayMonthFiller(data,"12")),
+    };
+
+  }
+
 }
 
 module.exports = ActualDataService;
