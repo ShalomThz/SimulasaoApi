@@ -72,6 +72,7 @@ class ActualDataService {
     let newNumberDate=numberDate+1;
     console.log(`esto es de actialDataService ${date} y esto es el numero que le sumo ${newNumberDate}`);
     const data=require(`../DB/${newNumberDate}.json`);
+    console.log(data);
     return {
       january: await this.getMonth(await this.arrayMonthFiller(data,"01")),
       february: await this.getMonth(await this.arrayMonthFiller(data,"02")),

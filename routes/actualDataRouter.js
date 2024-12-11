@@ -11,6 +11,7 @@ router.get("/perMonth", async(req, res) => {
 router.get("/comparate", async(req, res) => {
 
     const data=await service.getComparateData();
+
     if(!data){
       return res.status(400).json({ message: 'Datos no disponibles' });
     }
